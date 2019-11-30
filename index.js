@@ -4,7 +4,7 @@ const core = require('@actions/core')
 const generateBranchName = () => `changes-${Date.now()}`
 
 try {
-  const octokit = new github.GitHub(core.getInput('GITHUB_TOKEN'))
+  const octokit = new github.GitHub(core.getInput('GH_TOKEN'))
   const forks = core.getInput('FORKS')
 
   console.log(JSON.stringify(github.context.payload, undefined, 2))
