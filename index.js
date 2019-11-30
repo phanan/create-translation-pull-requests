@@ -25,7 +25,7 @@ async function run () {
       owner: 'phanan',
       repo: 'translation-sample',
       title: 'Updates on the way!',
-      head: generateBranchName,
+      head: branchName,
       base: 'master',
       body: 'Check and merge!',
       maintainer_can_modify: true
