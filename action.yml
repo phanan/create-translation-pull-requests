@@ -1,0 +1,15 @@
+name: 'Create Translation Pull Requests'
+description: 'Create pull requests for translation forks'
+inputs:
+  GITHUB_TOKEN:
+    description: 'The secret GitHub token, use to create the pull requests'
+    required: true
+  FORKS:
+    description: 'An array of forks (in "owner/repo" format)'
+    required: true
+outputs:
+  foo: # id of output
+    description: 'The time we greeted you'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
