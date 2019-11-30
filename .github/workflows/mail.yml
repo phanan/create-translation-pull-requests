@@ -1,0 +1,15 @@
+name: Translation
+on:
+  push:
+    branches:
+      - master
+jobs:
+  createTranslationsPullRequests:
+    name: Create pull requests for translation forks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create pull requests
+        uses: ./
+        with:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          FORKS: phanan/translation-sample
