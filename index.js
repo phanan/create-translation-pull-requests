@@ -1,7 +1,7 @@
 const github = require('@actions/github')
 const core = require('@actions/core')
 
-const generateBranchName = () => `changes-${Date.now()}`
+const generateBranchName = () => `refs/heads/changes-${Date.now()}`
 
 async function run () {
   const octokit = new github.GitHub(core.getInput('GH_TOKEN'))
@@ -19,9 +19,12 @@ async function run () {
 
   console.log(refData)
 
-  const branch = await octokit.git.createRef(refData)
-
-  console.log(JSON.stringify(branch, undefined, 2))
+  try {
+    const branch = await octokit.git.createRef(refData)
+    console.log(JSON.stringify(branch, undefined, 2))
+  } catch (error) {
+    core.setFailed(error.message);
+  }
 }
 
 run()
