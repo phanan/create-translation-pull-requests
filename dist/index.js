@@ -7578,7 +7578,7 @@ try {
     owner: github.context.payload.repository.owner.login,
     repo: github.context.payload.repository.name,
     ref: generateBranchName(),
-    sha: github.context.payload.head
+    sha: github.context.payload.after
   })
 
   console.log(JSON.stringify(branch, undefined, 2))
