@@ -5,8 +5,10 @@ const generateBranchName = () => `changes-${Date.now()}`
 
 try {
   const octokit = new github.GitHub(core.getInput('GITHUB_TOKEN'))
+  const forks = core.getInput('FORKS')
 
   console.log(JSON.stringify(github.context.payload, undefined, 2))
+  console.log(forks)
 
   const branch = octokit.git.createRef({
     owner: github.context.payload.repository.owner.login,
