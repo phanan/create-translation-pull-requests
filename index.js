@@ -1,7 +1,7 @@
 const github = require('@actions/github')
 const core = require('@actions/core')
 
-const generateBranchName = () => `refs/heads/changes-${Date.now()}`
+const generateBranchName = () => `changes-${Date.now()}`
 
 async function run () {
   const octokit = new github.GitHub(core.getInput('GH_TOKEN'))

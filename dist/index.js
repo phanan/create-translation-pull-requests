@@ -7565,7 +7565,7 @@ function gather(octokit, results, iterator, mapFn) {
 const github = __webpack_require__(85)
 const core = __webpack_require__(830)
 
-const generateBranchName = () => `refs/heads/changes-${Date.now()}`
+const generateBranchName = () => `changes-${Date.now()}`
 
 async function run () {
   const octokit = new github.GitHub(core.getInput('GH_TOKEN'))
