@@ -30,6 +30,7 @@ async function run () {
       body: 'Check and merge!',
       maintainer_can_modify: true
     }
+    console.log(pullData)
 
     const pull = await octokit.pulls.create(pullData)
     console.log(pull)
