@@ -7567,7 +7567,7 @@ const core = __webpack_require__(830)
 
 const generateBranchName = () => `changes-${Date.now()}`
 
-(async () => {
+async function run () {
   const octokit = new github.GitHub(core.getInput('GH_TOKEN'))
   const forks = core.getInput('FORKS')
 
@@ -7586,8 +7586,9 @@ const generateBranchName = () => `changes-${Date.now()}`
   const branch = await octokit.git.createRef(refData)
 
   console.log(JSON.stringify(branch, undefined, 2))
-}) ()
+}
 
+run()
 
 /***/ }),
 
