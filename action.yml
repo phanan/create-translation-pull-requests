@@ -1,7 +1,7 @@
 name: 'Create Translation Pull Requests'
 description: 'Create pull requests for translation forks'
 inputs:
-  GITHUB_TOKEN:
+  GH_TOKEN:
     description: 'The secret GitHub token, use to create the pull requests'
     required: true
   FORKS:

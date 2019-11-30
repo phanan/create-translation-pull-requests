@@ -7568,7 +7568,6 @@ const core = __webpack_require__(830)
 const generateBranchName = () => `refs/heads/changes-${Date.now()}`
 
 async function run () {
-  console.log('x-t', core.getInput('GH_TOKEN'))
   const octokit = new github.GitHub(core.getInput('GH_TOKEN'))
   const forks = core.getInput('FORKS')
 
