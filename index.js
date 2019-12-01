@@ -4,14 +4,12 @@ const core = require('@actions/core')
 const generateBranchName = () => `changes-${Date.now()}`
 
 const parseForksInput = rawInput => rawInput.split(/\r?\n/).map(fullName => {
-  ;[owner, repo] = fullName.trim().split('/')
+  [owner, repo] = fullName.trim().split('/')
   return { owner, repo }
 })
 
 async function run () {
   const octokit = new github.GitHub(core.getInput('GH_TOKEN'))
-  const forks = parseForksInput(core.getInput('FORKS'))
-  console.log(forks)
 
   const owner = github.context.payload.repository.owner.login
   const repo = github.context.payload.repository.name
@@ -25,20 +23,27 @@ async function run () {
   }
 
   try {
-    // const branch = await octokit.git.createRef(refData)
+    const branch = await octokit.git.createRef(refData)
+    const head = `${owner}:${branchName}`
+    const title = `Latest changes from ${owner}/${repo}`
 
-    // const pullData = {
-    //   owner: 'phanan-forks',
-    //   repo: 'create-translation-pull-requests',
-    //   title: 'Latest changes from upstream',
-    //   head: `phanan:${branchName}`,
-    //   base: 'master',
-    //   body: 'Check and merge!',
-    //   maintainer_can_modify: true
-    // }
+    parseForksInput(core.getInput('FORKS')).each(async ({ owner, repo }) => {
+      const pullData = {
+        owner,
+        repo,
+        head,
+        title,
+        base: 'master',
+        maintainer_can_modify: true
+      }
 
-    // const pull = await octokit.pulls.create(pullData)
-    // console.info(`Pull request created at ${pull.data.url}`)
+      try {
+        const pull = await octokit.pulls.create(pullData)
+        console.info(`PR created for ${owner}/${repo}: ${pull.data.url}`)
+      } catch (error) {
+        console.error(`Failed to create PR for ${owner}/${repo}: ${error.message}`)
+      }
+    })
   } catch (error) {
     core.setFailed(error.message);
   }
