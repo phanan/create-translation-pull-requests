@@ -25,7 +25,7 @@ async function run () {
       owner: 'phanan-forks',
       repo: 'create-translation-pull-requests',
       title: 'Updates on the way!',
-      head: branchName,
+      head: `phanan/create-translation-pull-requests/${branchName}`,
       base: 'master',
       body: 'Check and merge!',
       maintainer_can_modify: true
