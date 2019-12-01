@@ -27,7 +27,7 @@ async function run () {
     const head = `${owner}:${branchName}`
     const title = `Latest changes from ${owner}/${repo}`
 
-    parseForksInput(core.getInput('FORKS')).each(async ({ owner, repo }) => {
+    parseForksInput(core.getInput('FORKS')).forEach(async ({ owner, repo }) => {
       const pullData = {
         owner,
         repo,
