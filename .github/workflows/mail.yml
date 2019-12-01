@@ -14,4 +14,7 @@ jobs:
         uses: ./
         with:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          FORKS: phanan/translation-sample
+          # GitHub doesn't support array for inputs (yet?)
+          FORKS: |
+            phanan-forks/create-translation-pull-requests
+            foo/bar
