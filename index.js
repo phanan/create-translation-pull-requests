@@ -1,9 +1,7 @@
-const github = require('@actions/github')
-const core = require('@actions/core')
-const parseForksInput = require('./utils/parse-forks-input')
-const git = require('./utils/git')
-
-console.log(git)
+import github from '@actions/github'
+import core from '@actions/core'
+import parseForksInput from './utils/parse-forks-input'
+import git from './utils/git'
 
 async function run () {
   const owner = github.context.payload.repository.owner.login
