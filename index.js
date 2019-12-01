@@ -3,10 +3,15 @@ const core = require('@actions/core')
 
 const generateBranchName = () => `changes-${Date.now()}`
 
+const parseForksInput = rawInput => rawInput.split(/\r?\n/).map(fullName => {
+  ;[owner, repo] = fullName.trim().split('/')
+  return { owner, repo }
+})
+
 async function run () {
   const octokit = new github.GitHub(core.getInput('GH_TOKEN'))
-  const forks = core.getInput('FORKS')
-  console.log('forks: ', forks)
+  const forks = parseForksInput(core.getInput('FORKS'))
+  console.log(forks)
 
   const owner = github.context.payload.repository.owner.login
   const repo = github.context.payload.repository.name
