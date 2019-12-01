@@ -3,6 +3,8 @@ const core = require('@actions/core')
 const parseForksInput = require('./utils/parse-forks-input')
 const git = require('./utils/git')
 
+console.log(git)
+
 async function run () {
   const owner = github.context.payload.repository.owner.login
   const repo = github.context.payload.repository.name
