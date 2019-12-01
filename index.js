@@ -22,8 +22,8 @@ async function run () {
     const branch = await octokit.git.createRef(refData)
 
     const pullData = {
-      owner: 'phanan',
-      repo: 'translation-sample',
+      owner: 'phanan-forks',
+      repo: 'create-translation-pull-requests',
       title: 'Updates on the way!',
       head: branchName,
       base: 'master',
