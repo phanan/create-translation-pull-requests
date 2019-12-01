@@ -12,6 +12,7 @@ async function run () {
   try {
     const octokit = new github.GitHub(core.getInput('GH_TOKEN'))
     const branchName = await git.createBranch(octokit, owner, repo, sha)
+    console.log(parseForksInput(core.getInput('GH_FORKS')))
 
     // parseForksInput(core.getInput('GH_FORKS')).forEach(async ({ owner, repo }) => {
     //   try {
