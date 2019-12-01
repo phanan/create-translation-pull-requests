@@ -5,11 +5,8 @@ inputs:
     description: 'The secret GitHub token, use to create the pull requests'
     required: true
   FORKS:
-    description: 'An array of forks (in "owner/repo" format)'
+    description: 'An array of forks ("owner/repo"), in line-separated format (because GitHub doesn\'t support array input yet'
     required: true
-outputs:
-  foo: # id of output
-    description: 'The time we greeted you'
 runs:
   using: 'node12'
   main: 'dist/index.js'
