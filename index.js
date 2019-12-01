@@ -5,13 +5,13 @@ const github = require('@actions/github')
 const core = require('@actions/core')
 
 async function run () {
-  const owner = github.context.payload.repository.owner.login
-  const repo = github.context.payload.repository.name
-  const sha = github.context.payload.after
+  const sourceOwner = github.context.payload.repository.owner.login
+  const sourceRepo = github.context.payload.repository.name
+  const commitSHA = github.context.payload.after
 
   try {
     const octokit = new github.GitHub(core.getInput('GH_TOKEN'))
-    const branchName = await git.createBranch(octokit, owner, repo, sha)
+    const branchName = await git.createBranch(octokit, sourceOwner, sourceRepo, commitSHA)
 
     parseForksInput(core.getInput('FORKS')).forEach(async ({ owner, repo }) => {
       try {
