@@ -39,9 +39,9 @@ async function run () {
 
       try {
         const pull = await octokit.pulls.create(pullData)
-        console.info(`PR created for ${owner}/${repo}: ${pull.data.url}`)
+        core.info(`PR created for ${owner}/${repo}: ${pull.data.html_url}`)
       } catch (error) {
-        console.error(`Failed to create PR for ${owner}/${repo}: ${error.message}`)
+        core.error(`Failed to create PR for ${owner}/${repo}: ${error.message}`)
       }
     })
   } catch (error) {
