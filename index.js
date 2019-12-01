@@ -19,7 +19,7 @@ const parseForksInput = rawInput => rawInput.split(/\r?\n/).map(fullName => {
   return { owner, repo }
 })
 
-const createPullRequest = async (octokit, sourceOwner, sourceRepo, branchName) => {
+const createPullRequests = async (octokit, sourceOwner, sourceRepo, branchName) => {
   parseForksInput(core.getInput('FORKS')).forEach(async ({ owner, repo }) => {
     try {
       const pull = await octokit.pulls.create({
