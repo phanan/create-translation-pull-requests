@@ -1,8 +1,9 @@
 const github = require('@actions/github')
 const core = require('@actions/core')
+const parseForksInput = require('./utils/parse-forks-input')
 
 const createNewBranch = async (octokit, owner, repo) => {
-  const branchName = `changes-${Date.now()}`
+  const branchName = `changes-${new Date().toJSON().slice(0, 10)}-${Date.now()}`
 
   await octokit.git.createRef({
     owner,
@@ -13,11 +14,6 @@ const createNewBranch = async (octokit, owner, repo) => {
 
   return branchName
 }
-
-const parseForksInput = rawInput => rawInput.split(/\r?\n/).map(fullName => {
-  [owner, repo] = fullName.trim().split('/')
-  return { owner, repo }
-})
 
 const createPullRequests = async (octokit, sourceOwner, sourceRepo, branchName) => {
   parseForksInput(core.getInput('FORKS')).forEach(async ({ owner, repo }) => {
